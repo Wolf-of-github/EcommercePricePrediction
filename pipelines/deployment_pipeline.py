@@ -31,7 +31,7 @@ def deployment_trigger(accuracy: float, min_accuracy: float) -> bool:
     return accuracy > min_accuracy
 
 @step(enable_cache = False)
-def predition_service_loader(
+def prediction_service_loader(
     pipeline_name: str,
     pipeline_step_name: str,
     running: bool = True,
@@ -144,7 +144,7 @@ def continuous_deployment_pipeline(
 @pipeline(enable_cache=False, settings = {"docker": docker_settings})
 def interface_pipeline(pipeline_name: str, pipeline_step_name: str):
     data = dynamic_importer()
-    service = predition_service_loader(
+    service = prediction_service_loader(
         pipeline_name = pipeline_name,
         pipeline_step_name = pipeline_step_name,
         running = False
