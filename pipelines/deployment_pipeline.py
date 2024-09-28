@@ -58,7 +58,7 @@ def predition_service_loader(
 @step
 def predictor(
     service: MLFlowDeploymentService,
-    data: np.ndarray
+    data: str,  
 )->np.ndarray:
 
 

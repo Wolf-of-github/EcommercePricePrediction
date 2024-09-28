@@ -1,6 +1,8 @@
 import logging
 import pandas as pd
-from src.data_cleaning import DataPreProcessStrategy, DataCleaning  # Assuming these are your custom imports
+
+from src.data_cleaning import DataCleaning, DataPreProcessStratrgy
+
 
 def get_data_for_test():
     try:
@@ -11,7 +13,7 @@ def get_data_for_test():
         df = df.sample(n=100)
         
         # Apply the data preprocessing strategy
-        preprocess_strategy = DataPreProcessStrategy()
+        preprocess_strategy = DataPreProcessStratrgy()
         data_cleaning = DataCleaning(df, preprocess_strategy)
         df = data_cleaning.handle_data()
         
