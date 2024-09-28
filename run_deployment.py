@@ -7,7 +7,7 @@ from zenml.integrations.mlflow.mlflow_utils import get_tracking_uri
 from zenml.integrations.mlflow.model_deployers.mlflow_model_deployer import MLFlowModelDeployer
 from zenml.integrations.mlflow.services import MLFlowDeploymentService
 
-from pipelines.deployment_pipeline import continuous_deployment_pipeline
+from pipelines.deployment_pipeline import (continuous_deployment_pipeline, interface_pipeline)
 
 DEPLOY = "deploy"
 PREDICT = "predict"
@@ -44,10 +44,9 @@ def run_deployment(config: str, min_accuracy: float):
         )
 
     if predict:
-        continuous_deployment_pipeline(
-            min_accuracy=min_accuracy, 
-            workers=3, 
-            timeout=60
+        interface_pipeline(
+            pipeline_name = 'continuous_deployment_pipeline',
+            pipeline_step_name = 'mlflow_model_deployer_step'
         )
 
     print(
